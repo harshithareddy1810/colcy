@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colcy - Make Payment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Make a Payment</h1>
+
+    <form id="payment-form">
+      <input type="text" id="userId" placeholder="User ID" required>
+      <input type="number" id="paymentAmount" placeholder="Payment Amount" required>
+      <button type="submit">Pay</button>
+    </form>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+
+    const userData = {
+      user1: { balance: 1000 },
+      user2: { balance: 500 },
+      user3: { balance: 750 },
+    };
+
+    document.getElementById('payment-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const userId = document.getElementById('userId').value.trim();
+      const paymentAmount = parseFloat(document.getElementById('paymentAmount').value.trim());
+
+
+      if (!userId || isNaN(paymentAmount) || paymentAmount <= 0) {
+        document.getElementById('result').innerText = 'Please enter a valid user ID and payment amount.';
+        return;
+      }
+
+
+      if (userData[userId]) {
+
+        if (userData[userId].balance >= paymentAmount) {
+
+          userData[userId].balance -= paymentAmount;
+          document.getElementById('result').innerText = `Payment successful! Remaining balance: ${userData[userId].balance}`;
+        } else {
+          document.getElementById('result').innerText = `Error: Insufficient balance. Your current balance is ${userData[userId].balance}`;
+        }
+      } else {
+        document.getElementById('result').innerText = `Error: User ID '${userId}' not found.`;
+      }
+    });
+  </script>
+
+</body>
+</html>

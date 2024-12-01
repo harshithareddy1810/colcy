@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colcy - Convert Money to Points</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Convert Money to Points</h1>
+
+    <form id="convert-form">
+      <input type="text" id="userId" placeholder="User ID" required>
+      <input type="number" id="amount" placeholder="Amount" required>
+      <button type="submit">Convert</button>
+    </form>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    document.getElementById('convert-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const userId = document.getElementById('userId').value.trim();
+      const amount = parseFloat(document.getElementById('amount').value.trim());
+
+      // Validate userId and amount
+      if (!userId || isNaN(amount) || amount <= 0) {
+        document.getElementById('result').innerText = 'Please enter a valid user ID and amount.';
+        return;
+      }
+
+      try {
+        // Send POST request to backend API
+        const response = await fetch('http://localhost:5000/convert', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userId, amount }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          document.getElementById('result').innerText = `Points added successfully! Your new balance is: ${data.balance}`;
+        } else {
+          document.getElementById('result').innerText = `Error: ${data.message}`;
+        }
+      } catch (error) {
+        document.getElementById('result').innerText = `An error occurred: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>

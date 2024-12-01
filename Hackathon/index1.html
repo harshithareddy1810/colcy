@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital 1  Currency App</title>
+  <link rel="stylesheet" href="index1.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Colcy</h1>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="convert.html" class="convert-link">Convert Money</a> 
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Cashless Campus, Simplified</h2>
+      <p>Convert real money into campus-specific points for seamless transactions across dining, bookstores, events, and more.</p>
+      <a href="login.html" class="cta-button">Get Started</a>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2>Key Features</h2>
+    <div class="feature-container">
+      <div class="feature">
+        <h3>Seamless Transactions</h3>
+        <p>Enjoy hassle-free transactions at various campus outlets using your digital currency.</p>
+      </div>
+      <div class="feature">
+        <h3>Balance Management</h3>
+        <p>Easily keep track of your digital currency balance and transaction history.</p>
+      </div>
+      <div class="feature">
+        <h3>Exclusive Offers</h3>
+        <p>Unlock special discounts and promotions from participating merchants.</p>
+      </div>
+      <div class="feature">
+        <h3>Secure and Reliable</h3>
+        <p>Benefit from a secure platform that protects your financial information.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="main-container">
+    <div class="content-section">
+      <ul>
+        <li>Seamless campus transactions with digital currency.</li>
+        <li>Manage balances and track spending.</li>
+        <li>Exclusive offers and discounts for students.</li>
+        <li>Fast, secure, and user-friendly interface.</li>
+      </ul>
+    </div>
+
+  <script>
+    function showForm(formType) {
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+      const loginTab = document.getElementById('login-tab');
+      const signupTab = document.getElementById('signup-tab');
+
+      if (formType === 'login') {
+        loginForm.classList.add('active');
+        signupForm.classList.remove('active');
+        loginTab.classList.add('active');
+        signupTab.classList.remove('active');
+      } else {
+        signupForm.classList.add('active');
+        loginForm.classList.remove('active');
+        signupTab.classList.add('active');
+        loginTab.classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>
